@@ -22,7 +22,6 @@
 ```text
 ├── datasets/                  # Local directory for raw and processed datasets
 ├── notebooks/             # Jupyter Notebooks containing EDA and Modeling
-├── src/                   # Python source code for data pipeline and helper functions
 ├── env/                   # Isolated virtual environment
 ├── README.md              # Project executive summary and documentation
 └── requirements.txt       # Project dependencies
