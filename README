@@ -1,10 +1,3 @@
-¡Vamos con el `README.md`! Este archivo es la cara visible de tu repositorio en GitHub. Tiene que estar estructurado de forma impecable, con una jerarquía clara y un diseño visualmente atractivo para captar la atención de cualquier reclutador técnico.
-
-Siguiendo tus especificaciones, **todo el contenido del archivo y sus comentarios internos están en inglés**, listos para que hagas copy-paste en tu proyecto.
-
-Aquí tenés la estructura final version para tu portafolio:
-
-```markdown
 # Wind Farm Power Output Forecasting & Efficiency Optimization
 
 ## Executive Summary
@@ -27,7 +20,7 @@ Aquí tenés la estructura final version para tu portafolio:
 ## Project Structure
 
 ```text
-├── data/                  # Local directory for raw and processed datasets
+├── datasets/                  # Local directory for raw and processed datasets
 ├── notebooks/             # Jupyter Notebooks containing EDA and Modeling
 ├── src/                   # Python source code for data pipeline and helper functions
 ├── env/                   # Isolated virtual environment
@@ -45,7 +38,7 @@ This project uses an isolated python environment. To replicate this setup, run t
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/your-username/wind_energy_prediction.git](https://github.com/your-username/wind_energy_prediction.git)
+git clone [https://github.com/fiorellatrigo/wind_farm_power_output_forecast](https://github.com/fiorellatrigo/wind_farm_power_output_forecast)
 cd wind_energy_prediction
 
 ```
@@ -108,7 +101,7 @@ To avoid target leakage and respect time dependencies, data was strictly partiti
 
 ## References & Data Sources
 
-* **German TSO Open Data:** 50Hertz, Amprion, TenneTTSO, and TransnetBW grid management reports.
+* **[German TSO Open Data](https://www.kaggle.com/datasets/jorgesandoval/wind-power-generation):** 50Hertz, Amprion, TenneTTSO, and TransnetBW grid management reports.
 * **Target Variable:** Actual wind power generation measured in Megawatts (MW).
 
 ```
