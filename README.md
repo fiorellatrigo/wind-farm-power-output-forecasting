@@ -1,0 +1,106 @@
+# Wind Farm Power Output Forecasting & Efficiency Optimization
+
+## Executive Summary
+
+*   **Project Title:** Wind Farm Power Output Forecasting & Efficiency Optimization
+*   **The Problem:** Wind energy generation is highly intermittent; failing to predict exact power output leads to severe financial grid penalties or wasted clean energy.
+*   **Why it Matters:** This model backs grid-stability decisions for Transmission System Operators (TSOs), allowing energy traders to commit accurate power volumes to the market and optimize asset storage.
+*   **Data & Target:** Historical 15-minute interval records from four major German TSOs (50Hertz, Amprion, TenneTTSO, and TransnetBW). The target variable is `wind_generation_mw`.
+*   **The Approach:** Transformed raw multi-column daily matrices into a chronological time-series 'long format' via a `melt` pipeline. Extracted cyclical temporal features (hour, day, month, day of week) and applied strict chronological validation splits to eliminate data leakage.
+*   **Modeling:** Developed an optimized gradient-boosting framework utilizing **XGBoost Regressor** to model non-linear regional operational signatures against time constraints.
+*   **Evaluation:** The XGBoost model ($MAE = 49.41$ MW, $RMSE = 77.15$ MW, $R^2 = -0.1905$) drastically outperformed the naive constant baseline ($MAE = 86.96$ MW, $RMSE = 97.88$ MW, $R^2 = -0.9164$), achieving a $37$ MW reduction in average predictive error.
+*   **Key Takeaways (Findings & Limitations):**
+    *   **Geographical Dominance:** Coastal-adjacent TSOs (TenneTTSO/50Hertz) contain the highest structural generation capacities and variance, while landlocked ones stay compressed.
+    *   **The Calendar Ceiling:** Temporal boundaries can isolate seasonal capacity limits (winter peaks), but calendar variables alone act as structural noise for hourly predictions.
+    *   **Physics Dependency:** Wind behavior is fundamentally stochastic and governed by fluid dynamics; an isolated time-series architecture cannot fully capture sudden meteorological spikes.
+*   **Next Steps:** Perform a spatial-temporal data enrichment by joining the unified grid timestamps with historical physical weather APIs (Open-Meteo) to inject **wind speed (m/s)** and air density features.
+
+---
+
+## Project Structure
+
+```text
+├── datasets/              # Local directory for raw datasets
+├── img/                   # Generated data visualizations and charts 
+├── notebooks/             # Jupyter Notebooks containing EDA and Modeling
+├── README.md              # Project executive summary and documentation
+└── requirements.txt       # Project dependencies
+
+```
+
+---
+
+## Installation & Environment Setup
+
+This project uses an isolated python environment. To replicate this setup, run the following commands in your terminal:
+
+### 1. Clone the repository
+
+```bash
+git clone [https://github.com/fiorellatrigo/wind_farm_power_output_forecast](https://github.com/fiorellatrigo/wind_farm_power_output_forecast)
+cd wind_energy_prediction
+
+```
+
+### 2. Create and activate the virtual environment
+
+* **Windows:**
+
+```powershell
+python -m venv env
+.\env\Scripts\activate
+
+```
+
+* **Mac/Linux:**
+
+```bash
+python -m venv env
+source env/bin/activate
+
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+
+```
+
+---
+
+## Data Pipeline & Methodology
+
+### 1. Structural Restructuring (Melt Pipeline)
+
+The dataset was originally structured in a "wide format" where each row represented a single calendar day containing 96 independent 15-minute operational measurement columns. To make this architecture production-ready, we implemented a data transformation pipeline that flattened the daily metrics into a continuous time-series "long format," mapping a unique `timestamp` index to each power generation observation.
+
+### 2. Validation Strategy
+
+To avoid target leakage and respect time dependencies, data was strictly partitioned chronologically using an 80/20 train-test split instead of randomized cross-validation:
+
+* **Training Set:** 121,958 rows
+* **Testing Set:** 30,490 rows
+
+---
+
+## Model Performance & Technical Insights
+
+### Model Performance vs. Baseline
+
+| Model Architecture | MAE (MW) | RMSE (MW) | R² Score |
+| --- | --- | --- | --- |
+| **Naive Constant Baseline** | 86.96 | 97.88 | -0.9164 |
+| **XGBoost Regressor** | **49.41** | **77.15** | **-0.1905** |
+
+* **Error Reduction:** The optimized XGBoost framework reduced the average predictive error by over **37 MW** compared to a naive historical mean baseline.
+* **The Atmospheric Boundary:** While the gradient-boosting trees successfully isolated geographical distribution baselines and quarterly seasonal trends (beating raw guessing), the negative $R^2$ score under strict chronological testing mathematically proves that calendar attributes alone introduce structural noise rather than physical predictive signals.
+
+---
+
+## References & Data Sources
+
+* **[German TSO Open Data](https://www.kaggle.com/datasets/jorgesandoval/wind-power-generation):** 50Hertz, Amprion, TenneTTSO, and TransnetBW grid management reports.
+* **Target Variable:** Actual wind power generation measured in Megawatts (MW).
+
+```
