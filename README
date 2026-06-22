@@ -20,9 +20,9 @@
 ## Project Structure
 
 ```text
-├── datasets/                  # Local directory for raw and processed datasets
+├── datasets/              # Local directory for raw datasets
+├── img/                   # Generated data visualizations and charts 
 ├── notebooks/             # Jupyter Notebooks containing EDA and Modeling
-├── env/                   # Isolated virtual environment
 ├── README.md              # Project executive summary and documentation
 └── requirements.txt       # Project dependencies
 
