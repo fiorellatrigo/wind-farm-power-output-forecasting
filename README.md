@@ -102,5 +102,3 @@ To avoid target leakage and respect time dependencies, data was strictly partiti
 
 * **[German TSO Open Data](https://www.kaggle.com/datasets/jorgesandoval/wind-power-generation):** 50Hertz, Amprion, TenneTTSO, and TransnetBW grid management reports.
 * **Target Variable:** Actual wind power generation measured in Megawatts (MW).
-
-```
