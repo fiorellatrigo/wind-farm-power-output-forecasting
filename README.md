@@ -67,7 +67,7 @@ This project uses an isolated Python environment. To replicate this setup, run t
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/fiorellatrigo/wind_energy_prediction](https://github.com/fiorellatrigo/wind-farm-power-output-forecasting)
+git clone https://github.com/fiorellatrigo/wind-farm-power-output-forecasting.git
 cd wind-farm-power-output-forecasting
 
 ```
