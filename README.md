@@ -1,5 +1,9 @@
 # Wind Farm Power Output Forecasting & Efficiency Optimization
 
+<p align="center">
+  <img src="img/monthly_distribution_of_wind_power_generation.png" width="500">
+</p>
+
 ## 1. The Problem
 Wind energy generation is highly intermittent. Failing to predict exact power output leads to severe financial grid penalties for non-compliance and causes the structural wasting of clean, unutilized energy. This volatility directly impacts energy traders committing power volumes to the market and Transmission System Operators (TSOs) managing real-time grid stability.
 
