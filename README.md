@@ -1,7 +1,7 @@
 # Wind Farm Power Output Forecasting & Efficiency Optimization
 
 <p align="center">
-  <img src="img/monthly_distribution_of_wind_power_generation.png" width="500">
+  <img src="img/monthly_distribution_of_wind_power_generation.png" width="700">
 </p>
 
 ## 1. The Problem
